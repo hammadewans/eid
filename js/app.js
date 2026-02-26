@@ -1,17 +1,22 @@
 const music = document.getElementById("bgMusic");
 
-// Page load par music play karne ki koshish
+// Pehle muted autoplay try karega
 window.addEventListener("load", () => {
-
-    // Autoplay try karega
     music.play().catch(() => {});
-
-    // 1 second baad unmute karne ki koshish
-    setTimeout(() => {
-        music.muted = false;
-
-        // Dobara play try kare agar blocked ho
-        music.play().catch(() => {});
-    }, 1000);
-
 });
+
+// First user interaction pe unmute + play
+function enableSound() {
+    music.muted = false;
+    music.play().catch(() => {});
+    
+    // Ek baar ke baad listener remove
+    document.removeEventListener("touchstart", enableSound);
+    document.removeEventListener("click", enableSound);
+}
+
+// Mobile touch
+document.addEventListener("touchstart", enableSound);
+
+// Desktop click
+document.addEventListener("click", enableSound);
