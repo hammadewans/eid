@@ -170,29 +170,6 @@ export default class Content {
     createLine('ईद उल-अज़हा', '28px', true, '#ffee00');
     createLine('की बहुत-बहुत दिली मुबारकबाद', '24px', true, '#00ffaa');
 
-    // ===== Google AdSense Test Container =====
-    const adContainer = document.createElement('div');
-    adContainer.style.width = '100%';
-    adContainer.style.display = 'flex';
-    adContainer.style.justifyContent = 'center';
-    adContainer.style.marginTop = '20px';
-    adContainer.style.position = 'relative';
-    adContainer.style.zIndex = '10';
-    this.container.appendChild(adContainer);
-
-    const adIns = document.createElement('ins');
-    adIns.className = 'adsbygoogle';
-    adIns.style.display = 'block';
-    adIns.style.width = '100%';
-    adIns.style.maxWidth = '728px';
-    adIns.style.height = '90px';
-    adIns.setAttribute('data-ad-client', 'ca-pub-3940256099942544'); // Test client ID
-    adIns.setAttribute('data-ad-slot', '6300978111'); // Test slot
-    adIns.setAttribute('data-ad-format', 'auto');
-    adIns.setAttribute('data-full-width-responsive', 'true');
-    adContainer.appendChild(adIns);
-    (window.adsbygoogle = window.adsbygoogle || []).push({});
-
     // ===== Horizontal sliding single Dua boxes =====
     const duaContainer = document.createElement('div');
     duaContainer.style.position = 'relative';
@@ -212,8 +189,8 @@ export default class Content {
 
     let currentIndex = 0;
     let box = this._createDuaBox(duas[currentIndex], duaContainer);
+    const speed = 1; // pixels per frame
 
-    const speed = 1;
     const scrollSingleBox = () => {
       let left = parseFloat(box.style.left);
       left -= speed;
@@ -227,6 +204,7 @@ export default class Content {
     };
     scrollSingleBox();
 
+    // ===== Countdown update =====
     this.countdown.start(({ days, hours, minutes, seconds }) => {
       this.daysEl.textContent = days;
       this.hoursEl.textContent = hours;
@@ -242,8 +220,7 @@ export default class Content {
     shareContainer.style.alignItems = 'center';
     shareContainer.style.gap = '10px';
     shareContainer.style.flexWrap = 'wrap';
-    shareContainer.style.position = 'relative';
-    shareContainer.style.zIndex = '20'; // higher than emojis
+    shareContainer.style.zIndex = '10';
     this.container.appendChild(shareContainer);
 
     const nameInput = document.createElement('input');
@@ -251,12 +228,12 @@ export default class Content {
     nameInput.placeholder = 'अपना नाम डालें और भेजें';
     nameInput.style.padding = '10px 15px';
     nameInput.style.borderRadius = '12px';
-    nameInput.style.border = '2px solid #fff';
+    nameInput.style.border = '2px solid rgba(255,255,255,0.5)';
     nameInput.style.fontSize = '16px';
     nameInput.style.outline = 'none';
     nameInput.style.backdropFilter = 'blur(5px)';
-    nameInput.style.background = 'rgba(255,255,255,0.3)'; // more visible
-    nameInput.style.color = '#000'; // black text
+    nameInput.style.background = 'rgba(255,255,255,0.1)';
+    nameInput.style.color = '#fff';
     shareContainer.appendChild(nameInput);
 
     const shareButton = document.createElement('button');
@@ -264,13 +241,13 @@ export default class Content {
     shareButton.style.padding = '10px 20px';
     shareButton.style.borderRadius = '12px';
     shareButton.style.border = '2px solid #fff';
-    shareButton.style.background = 'rgba(255,255,255,0.8)'; // lighter bg
-    shareButton.style.color = '#000'; // black text
+    shareButton.style.background = 'rgba(0,0,0,0.6)';
+    shareButton.style.color = '#fff';
     shareButton.style.cursor = 'pointer';
     shareButton.style.fontWeight = 'bold';
     shareButton.style.transition = '0.3s';
-    shareButton.onmouseenter = () => { shareButton.style.background = '#000'; shareButton.style.color = '#fff'; };
-    shareButton.onmouseleave = () => { shareButton.style.background = 'rgba(255,255,255,0.8)'; shareButton.style.color = '#000'; };
+    shareButton.onmouseenter = () => { shareButton.style.background = '#fff'; shareButton.style.color = '#000'; };
+    shareButton.onmouseleave = () => { shareButton.style.background = 'rgba(0,0,0,0.6)'; shareButton.style.color = '#fff'; };
     shareContainer.appendChild(shareButton);
 
     shareButton.addEventListener('click', () => {
@@ -283,6 +260,30 @@ export default class Content {
         alert('कृपया अपना नाम दर्ज करें।');
       }
     });
+
+    // ===== Google AdSense Container =====
+    const adContainer = document.createElement('div');
+    adContainer.style.width = '100%';
+    adContainer.style.display = 'flex';
+    adContainer.style.justifyContent = 'center';
+    adContainer.style.marginTop = '30px';
+    adContainer.style.position = 'relative';
+    adContainer.style.zIndex = '20';
+    this.container.appendChild(adContainer);
+
+    const adIns = document.createElement('ins');
+    adIns.className = 'adsbygoogle';
+    adIns.style.display = 'block';
+    adIns.style.width = '100%';
+    adIns.style.maxWidth = '728px';
+    adIns.style.height = '90px';
+    adIns.setAttribute('data-ad-client', 'ca-pub-3940256099942544'); // test client ID
+    adIns.setAttribute('data-ad-slot', '6300978111'); // test ad slot
+    adIns.setAttribute('data-ad-format', 'auto');
+    adIns.setAttribute('data-full-width-responsive', 'true');
+    adContainer.appendChild(adIns);
+
+    (window.adsbygoogle = window.adsbygoogle || []).push({});
   }
 
   _createCountdownBox(label, parent) {
