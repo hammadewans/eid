@@ -111,8 +111,50 @@ export default class Content {
         100% { transform: translateY(0px); box-shadow: 0 0 10px rgba(255,255,255,0.4);}
       }
       .animated-box { animation: floatBox 3s infinite ease-in-out; }
+
+      @keyframes touchBlast {
+        0% { transform: translate(0,0) scale(1); opacity: 1; }
+        100% {
+          transform: translate(var(--x), var(--y)) scale(0.5);
+          opacity: 0;
+        }
+      }
     `;
     document.head.appendChild(style);
+
+    // ===== CLICK / TAP EMOJI BLAST =====
+    this.container.addEventListener('click', (e) => {
+      const blastEmojis = ['🌙','⭐','✨','💖','❤️','💫','🌟'];
+
+      for (let i = 0; i < 70; i++) {
+        const particle = document.createElement('div');
+        particle.textContent = blastEmojis[Math.floor(Math.random()*blastEmojis.length)];
+
+        particle.style.position = 'absolute';
+        particle.style.left = e.clientX + 'px';
+        particle.style.top = e.clientY + 'px';
+        particle.style.fontSize = (15 + Math.random()*25) + 'px';
+        particle.style.pointerEvents = 'none';
+        particle.style.zIndex = '9999';
+
+        const angle = Math.random() * 2 * Math.PI;
+        const distance = 120 + Math.random() * 250;
+
+        const x = Math.cos(angle) * distance;
+        const y = Math.sin(angle) * distance;
+
+        particle.style.setProperty('--x', x + 'px');
+        particle.style.setProperty('--y', y + 'px');
+
+        particle.style.animation = 'touchBlast 1.4s ease-out forwards';
+
+        this.container.appendChild(particle);
+
+        setTimeout(() => {
+          particle.remove();
+        }, 1400);
+      }
+    });
   }
 
   show(name = 'अतिथि') {
@@ -167,7 +209,7 @@ export default class Content {
     this.secondsEl = this._createCountdownBox('सेकंड', countdownContainer);
 
     createLine('पहले', '24px', true, '#ff0095');
-    createLine('ईद उल-अज़हा', '28px', true, '#ffee00');
+    createLine('ईद उल फ़ित्र', '28px', true, '#ffee00');
     createLine('की बहुत-बहुत दिली मुबारकबाद', '24px', true, '#00ffaa');
 
     // ===== Horizontal sliding single Dua boxes =====
@@ -179,13 +221,13 @@ export default class Content {
     duaContainer.style.width = '100%';
     this.container.appendChild(duaContainer);
 
-    const duas = [
-      'ईद की खुशियाँ आप पर हमेशा बनी रहें',
-      'आपका घर खुशियों से भरा रहे',
-      'खुदा आपके जीवन में सुख और समृद्धि लाए',
-      'आप और आपके परिवार सुरक्षित और स्वस्थ रहें',
-      'ईद का त्योहार आपके लिए ढेर सारी खुशियाँ लाए'
-    ];
+  const duas = [
+    'ईद की खुशियाँ आप पर हमेशा कायम रहें',
+    'आप का घर खुशियों से आबाद रहे',
+    'अल्लाह आपकी ज़िंदगी में सुकून और खुशहाली अता फरमाए',
+    'आप और आपका खानदान महफूज़ और सेहतमंद रहे',
+    'ईद का त्योहार आपके लिए बेशुमार खुशियाँ लाए'
+  ];
 
     let currentIndex = 0;
     let box = this._createDuaBox(duas[currentIndex], duaContainer);
