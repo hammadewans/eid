@@ -111,50 +111,8 @@ export default class Content {
         100% { transform: translateY(0px); box-shadow: 0 0 10px rgba(255,255,255,0.4);}
       }
       .animated-box { animation: floatBox 3s infinite ease-in-out; }
-
-      @keyframes touchBlast {
-        0% { transform: translate(0,0) scale(1); opacity: 1; }
-        100% {
-          transform: translate(var(--x), var(--y)) scale(0.5);
-          opacity: 0;
-        }
-      }
     `;
     document.head.appendChild(style);
-
-    // ===== CLICK / TAP EMOJI BLAST =====
-    this.container.addEventListener('click', (e) => {
-      const blastEmojis = ['🌙','⭐','✨','💖','❤️','💫','🌟'];
-
-      for (let i = 0; i < 70; i++) {
-        const particle = document.createElement('div');
-        particle.textContent = blastEmojis[Math.floor(Math.random()*blastEmojis.length)];
-
-        particle.style.position = 'absolute';
-        particle.style.left = e.clientX + 'px';
-        particle.style.top = e.clientY + 'px';
-        particle.style.fontSize = (15 + Math.random()*25) + 'px';
-        particle.style.pointerEvents = 'none';
-        particle.style.zIndex = '9999';
-
-        const angle = Math.random() * 2 * Math.PI;
-        const distance = 120 + Math.random() * 250;
-
-        const x = Math.cos(angle) * distance;
-        const y = Math.sin(angle) * distance;
-
-        particle.style.setProperty('--x', x + 'px');
-        particle.style.setProperty('--y', y + 'px');
-
-        particle.style.animation = 'touchBlast 1.4s ease-out forwards';
-
-        this.container.appendChild(particle);
-
-        setTimeout(() => {
-          particle.remove();
-        }, 1400);
-      }
-    });
   }
 
   show(name = 'अतिथि') {
