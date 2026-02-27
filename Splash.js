@@ -10,91 +10,99 @@ export default class Splash {
     this.splash.style.background = "url('/assets/bg.webp') center/cover no-repeat";
     this.splash.style.zIndex = '9999';
 
-    // ===== Background Floating Emojis =====
+    // ===== Animated Background =====
     const bgAnimation = document.createElement('div');
-    Object.assign(bgAnimation.style,{
-      position:'absolute',
-      top:'0',left:'0',
-      width:'100%',height:'100%',
-      overflow:'hidden',
-      zIndex:'1'
-    });
+    bgAnimation.style.position = 'absolute';
+    bgAnimation.style.top = '0';
+    bgAnimation.style.left = '0';
+    bgAnimation.style.width = '100%';
+    bgAnimation.style.height = '100%';
+    bgAnimation.style.overflow = 'hidden';
+    bgAnimation.style.zIndex = '1';
     this.splash.appendChild(bgAnimation);
 
     const symbols = ['🌙','⭐','✨','💖','❤️'];
 
     for (let i = 0; i < 25; i++) {
       const item = document.createElement('div');
-      item.innerHTML = symbols[Math.floor(Math.random()*symbols.length)];
-      Object.assign(item.style,{
-        position:'absolute',
-        fontSize:(20 + Math.random()*40)+'px',
-        left:Math.random()*100+'%',
-        top:Math.random()*100+'%',
-        animation:`floatAnim ${6+Math.random()*6}s infinite ease-in-out,
-                   blinkAnim ${2+Math.random()*3}s infinite alternate`
-      });
+      item.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+      item.style.position = 'absolute';
+      item.style.fontSize = (20 + Math.random() * 40) + 'px';
+      item.style.left = Math.random() * 100 + '%';
+      item.style.top = Math.random() * 100 + '%';
+      item.style.animation = `
+        floatAnim ${6 + Math.random() * 6}s infinite ease-in-out,
+        blinkAnim ${2 + Math.random() * 3}s infinite alternate
+      `;
       bgAnimation.appendChild(item);
     }
 
-    // ===== Heading =====
+    // ===== Heading Container =====
     const heading = document.createElement('div');
-    Object.assign(heading.style,{
-      position:'relative',
-      zIndex:'10000',
-      textAlign:'center',
-      fontWeight:'bold'
-    });
+    heading.style.position = 'relative';
+    heading.style.zIndex = '10000';
+    heading.style.textAlign = 'center';
+    heading.style.fontWeight = 'bold';
 
+    // ===== SAME ANIMATION FOR BOTH =====
+    const commonAnimation = 'textMove 3s infinite ease-in-out';
+
+    // ===== Eid ul Fitr =====
     const line1 = document.createElement('div');
     line1.textContent = "Eid ul Fitr";
     line1.style.fontSize = '3.5rem';
     line1.style.color = '#00ff40';
-    line1.style.textShadow = '0 0 20px #00ff40,0 0 60px #00ff40';
-    line1.style.animation = 'textMove 3s infinite ease-in-out';
+    line1.style.textShadow = `
+      0 0 15px #00ff40,
+      0 0 30px #00ff40,
+      0 0 60px #00ff40,
+      0 0 100px #00ff40
+    `;
+    line1.style.animation = commonAnimation;
 
+    // ===== Mubarak =====
     const line2 = document.createElement('div');
     line2.textContent = "Mubarak";
     line2.style.fontSize = '5rem';
     line2.style.color = '#00FFCC';
     line2.style.marginTop = '10px';
-    line2.style.textShadow = '0 0 25px #00FFCC,0 0 70px #00FFCC';
-    line2.style.animation = 'textMove 3s infinite ease-in-out';
+    line2.style.textShadow = `
+      0 0 20px #00FFCC,
+      0 0 40px #00FFCC,
+      0 0 80px #00FFCC
+    `;
+    line2.style.animation = commonAnimation;
 
     heading.appendChild(line1);
     heading.appendChild(line2);
     this.splash.appendChild(heading);
 
-    // ===== TAP Gesture =====
+    // ===== Gesture =====
     const gestureBox = document.createElement('div');
-    Object.assign(gestureBox.style,{
-      position:'relative',
-      marginTop:'40px',
-      zIndex:'10000',
-      height:'120px',
-      display:'flex',
-      justifyContent:'center',
-      alignItems:'flex-start'
-    });
+    gestureBox.style.position = 'relative';
+    gestureBox.style.marginTop = '40px';
+    gestureBox.style.zIndex = '10000';
+    gestureBox.style.height = '150px';
+    gestureBox.style.display = 'flex';
+    gestureBox.style.justifyContent = 'center';
+    gestureBox.style.alignItems = 'flex-start';
 
     const hand = document.createElement('div');
     hand.innerHTML = '👆';
-    hand.style.fontSize = '5rem';
+    hand.style.fontSize = '6rem';
     hand.style.animation = 'tapHand 1.5s infinite ease-in-out';
 
     const ripple = document.createElement('div');
-    Object.assign(ripple.style,{
-      position:'absolute',
-      top:'15px',
-      left:'50%',
-      transform:'translateX(-50%)',
-      width:'25px',
-      height:'25px',
-      border:'3px solid white',
-      borderRadius:'50%',
-      opacity:'0',
-      animation:'rippleEffect 1.5s infinite ease-out'
-    });
+    ripple.style.position = 'absolute';
+    ripple.style.top = '15px';
+    ripple.style.left = '50%';
+    ripple.style.transform = 'translateX(-50%)';
+    ripple.style.width = '25px';
+    ripple.style.height = '25px';
+    ripple.style.border = '3px solid #ffffff';
+    ripple.style.borderRadius = '50%';
+    ripple.style.opacity = '0';
+    ripple.style.animation = 'rippleEffect 1.5s infinite ease-out';
 
     gestureBox.appendChild(hand);
     gestureBox.appendChild(ripple);
@@ -102,73 +110,53 @@ export default class Splash {
 
     document.body.appendChild(this.splash);
 
-    // ===== CSS Animations =====
+    // ===== Animations =====
     const style = document.createElement('style');
     style.innerHTML = `
-      @keyframes floatAnim {
+      @keyframes tapHand {
         0% { transform: translateY(0); }
-        50% { transform: translateY(-30px); }
+        40% { transform: translateY(40px); }
+        60% { transform: translateY(40px); }
         100% { transform: translateY(0); }
       }
-      @keyframes blinkAnim {
-        0% { opacity:0.5; }
-        100% { opacity:1; }
-      }
-      @keyframes textMove {
-        0%,100% { transform:translateY(0); }
-        50% { transform:translateY(-10px); }
-      }
-      @keyframes tapHand {
-        0%,100% { transform:translateY(0); }
-        50% { transform:translateY(30px); }
-      }
+
       @keyframes rippleEffect {
-        0% { transform:translateX(-50%) scale(0.3); opacity:0.8; }
-        100% { transform:translateX(-50%) scale(4); opacity:0; }
+        0% { transform: translateX(-50%) scale(0.3); opacity: 0.8; }
+        70% { transform: translateX(-50%) scale(4); opacity: 0.2; }
+        100% { transform: translateX(-50%) scale(5); opacity: 0; }
       }
-      @keyframes blast {
-        0% { transform:translate(0,0) scale(1); opacity:1; }
-        100% { transform:translate(var(--x),var(--y)) scale(0.5); opacity:0; }
+
+      @keyframes floatAnim {
+        0% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-30px) rotate(15deg); }
+        100% { transform: translateY(0px) rotate(0deg); }
+      }
+
+      @keyframes blinkAnim {
+        0% { opacity: 0.5; }
+        100% { opacity: 1; }
+      }
+
+      /* SAME animation for both texts */
+      @keyframes textMove {
+        0% { transform: translateY(0px); }
+        25% { transform: translateY(-12px); }
+        50% { transform: translateY(0px); }
+        75% { transform: translateY(12px); }
+        100% { transform: translateY(0px); }
       }
     `;
     document.head.appendChild(style);
   }
 
   onClick(callback) {
-    this.splash.addEventListener('click', (e) => {
-
-      const emojis = ['🌙','⭐','✨','💖','❤️','🌟'];
-
-      for (let i = 0; i < 80; i++) {
-        const particle = document.createElement('div');
-        particle.innerHTML = emojis[Math.floor(Math.random()*emojis.length)];
-        Object.assign(particle.style,{
-          position:'absolute',
-          left:e.clientX+'px',
-          top:e.clientY+'px',
-          fontSize:(20+Math.random()*25)+'px',
-          zIndex:'20000',
-          pointerEvents:'none'
-        });
-
-        const angle = Math.random()*2*Math.PI;
-        const distance = 150+Math.random()*250;
-        particle.style.setProperty('--x',Math.cos(angle)*distance+'px');
-        particle.style.setProperty('--y',Math.sin(angle)*distance+'px');
-        particle.style.animation='blast 1.5s ease-out forwards';
-
-        this.splash.appendChild(particle);
-        setTimeout(()=>particle.remove(),1500);
-      }
-
-      setTimeout(()=>{
-        this.splash.style.transition='opacity 0.8s';
-        this.splash.style.opacity='0';
-        setTimeout(()=>{
-          this.splash.remove();
-          callback();
-        },800);
-      },700);
+    this.splash.addEventListener('click', () => {
+      this.splash.style.transition = 'opacity 0.6s';
+      this.splash.style.opacity = '0';
+      setTimeout(() => {
+        this.splash.remove();
+        callback();
+      }, 600);
     });
   }
 }
