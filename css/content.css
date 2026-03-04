@@ -1,5 +1,9 @@
 #content {
   width: 100%;
-  height: 75vh;
-  overflow: scroll;
+  /* Dynamic height = viewport height minus header minus navbar */
+  height: calc(100vh - 14vh - 13vh);
+  overflow-y: auto; /* vertical scroll only */
+  padding-top: env(safe-area-inset-top);   /* mobile safe area */
+  padding-bottom: env(safe-area-inset-bottom); /* mobile safe area */
+  box-sizing: border-box;
 }
