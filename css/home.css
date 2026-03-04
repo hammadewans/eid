@@ -1,0 +1,170 @@
+/* Existing dark theme + styling */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+#eid-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(160deg, #0d0d0d, #1a1a1a);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+#eid-container .content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  width: 90%;
+  background: rgba(30, 30, 30, 0.8);
+  padding: 40px 35px;
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Regular lines */
+.line {
+  font-size: 1.3rem;
+  color: #e0e0e0;
+  margin: 0;
+  text-align: center;
+}
+
+/* Name line */
+.name-line {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ffd700; /* golden */
+  margin: 0;
+  text-align: center;
+}
+
+/* Eid ul Fitr line */
+.eid-line {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffa500; /* orange/gold for emphasis */
+  margin: 0;
+  text-align: center;
+}
+
+/* Countdown boxes */
+#countdown-container {
+  margin: 18px 0;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.countdown-box {
+  background: #1e1e1e;
+  padding: 15px 22px;
+  border-radius: 12px;
+  min-width: 70px;
+  text-align: center;
+  font-weight: bold;
+  color: #ffd700;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.countdown-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+}
+
+.countdown-box .number {
+  font-size: 1.6rem;
+}
+
+.countdown-box .label {
+  font-size: 0.9rem;
+  margin-top: 3px;
+  color: #fff7d0;
+  text-transform: uppercase;
+}
+
+/* Moon */
+#moon {
+  position: absolute;
+  top: 8%;
+  right: 12%;
+  width: 120px;
+  height: 120px;
+  background: #fdf6d8;
+  border-radius: 50%;
+  box-shadow: 0 0 30px #fdf6d8, 0 0 60px #fdf6d8;
+  animation: floatMoon 6s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+@keyframes floatMoon {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(20px) rotate(15deg); }
+}
+
+/* Stars */
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.stars::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  box-shadow:
+    50px 100px white,
+    200px 150px white,
+    400px 80px white,
+    600px 200px white,
+    800px 50px white,
+    120px 250px white,
+    300px 300px white,
+    500px 100px white,
+    700px 150px white,
+    900px 200px white;
+  animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.2; }
+  to { opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #eid-container .content .line {
+    font-size: 1.1rem;
+  }
+
+  #eid-container .content .name-line {
+    font-size: 1.4rem;
+  }
+
+  #eid-container .content .eid-line {
+    font-size: 1.3rem;
+  }
+
+  .countdown-box .number {
+    font-size: 1.4rem;
+  }
+}

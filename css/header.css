@@ -1,0 +1,84 @@
+/* ---------- Header Base ---------- */
+.main-header {
+  width: 100%;
+  height: 14vh; /* slightly taller for premium look */
+  padding: 0 2.5rem; 
+  background: linear-gradient(135deg, #1b1b1b, #2f2f2f); /* modern dark gradient */
+  color: #ffffff;
+  position: relative;  /* normal flow, not sticky */
+  display: flex;
+  align-items: center; 
+  justify-content: flex-start;
+  gap: 1.5rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5); /* professional shadow */
+  border-bottom: 3px solid #ffd700; /* elegant bottom border */
+  box-sizing: border-box;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ---------- Header Container ---------- */
+.header-container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* ---------- Moon Icon ---------- */
+.moon {
+  font-size: 2.2rem;
+  transition: transform 0.5s ease, color 0.5s ease;
+  cursor: pointer;
+  color: #ffffff;
+}
+.moon:hover {
+  color: #ffd700;
+  transform: rotate(15deg) scale(1.1);
+  text-shadow: 0 0 8px #ffd700;
+}
+
+/* ---------- Header Title ---------- */
+.header-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  margin: 0;
+  color: #ffffff;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+}
+
+/* ---------- Animated Top Strip ---------- */
+.corner-strip {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 8px;
+  background: linear-gradient(90deg, #ffd700, #ff6f61, #ffd700);
+  border-radius: 0 0 10px 10px;
+  animation: stripMove 3s ease-in-out infinite alternate;
+}
+
+/* ---------- Strip Animation ---------- */
+@keyframes stripMove {
+  0% { transform: translateX(-50%) scaleX(1); opacity: 0.8; }
+  50% { transform: translateX(-50%) scaleX(1.1); opacity: 1; }
+  100% { transform: translateX(-50%) scaleX(1); opacity: 0.8; }
+}
+
+/* ---------- Hover Effect on Header ---------- */
+.main-header:hover {
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+}
+
+/* ---------- Responsive Design ---------- */
+@media screen and (max-width: 768px) {
+  .main-header {
+    height: 12vh;
+    padding: 0 1.5rem;
+  }
+  .moon { font-size: 1.8rem; }
+  .header-title { font-size: 1.8rem; }
+  .corner-strip { width: 140px; height: 6px; }
+}
