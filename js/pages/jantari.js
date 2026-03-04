@@ -31,7 +31,7 @@ export default function Timetable(container) {
     { date: "19-03-2026", weekday: "Thu", sehri: "05:07 AM", iftar: "06:33 PM" },
     { date: "20-03-2026", weekday: "Fri", sehri: "05:05 AM", iftar: "06:34 PM" },
   ];
-  
+
   const today = new Date();
   const day = String(today.getDate()).padStart(2, "0");
   const month = String(today.getMonth() + 1).padStart(2, "0");
@@ -55,7 +55,7 @@ export default function Timetable(container) {
 
     const sehriDiv = document.createElement("div");
     sehriDiv.className = "sehri-box";
-    sehriDiv.innerHTML = `<span class="label">Sehri</span><span class="time">${to24Hour(d.sehri)}</span>`;
+    sehriDiv.innerHTML = `${isToday ? '<div class="today-label">Today</div>' : ''}<span class="label">Sehri</span><span class="time">${to24Hour(d.sehri)}</span>`;
 
     const centerDiv = document.createElement("div");
     centerDiv.className = "center-info";
