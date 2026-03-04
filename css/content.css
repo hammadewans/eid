@@ -1,8 +1,7 @@
 #content {
   width: 100%;
-  /* Dynamic height = viewport height minus header minus navbar */
-  height: calc(100vh - 14vh - 13vh);
-  overflow-y: auto; /* vertical scroll only */
+  height: 75vh;             /* as per your design */
+  overflow-y: auto;         /* vertical scroll */
   padding-top: env(safe-area-inset-top);   /* mobile safe area */
   padding-bottom: env(safe-area-inset-bottom); /* mobile safe area */
   box-sizing: border-box;
