@@ -38,6 +38,12 @@ export default function Home(container, name) {
   // Use separate countdown function
   createCountdown("2026-03-21T00:00:00+05:30", countdownDiv);
 
+  // ---------------- "pehle" word after countdown ----------------
+  const pehleLine = document.createElement('p');
+  pehleLine.textContent = 'pehle';
+  pehleLine.className = 'line'; // same styling as other lines
+  content.appendChild(pehleLine);
+
   const line4 = document.createElement('p');
   line4.textContent = 'Eid ul Fitr';
   line4.className = 'eid-line';
