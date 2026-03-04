@@ -10,18 +10,18 @@
 .today-container {
   display: flex;
   justify-content: center;      
-  margin: 0; /* no margin */
+  margin: 0;
   position: sticky;
   top: 0;
-  z-index: 999; /* top layer */
-  background-color: #1a1a1a; /* sticky background */
+  z-index: 999;
+  background-color: #111; /* subtle sticky background */
 }
 
-/* ---------- Top Today Row ---------- */
+/* ---------- Today Row ---------- */
 .today-row {
   width: 100%;                    
   flex-shrink: 0;                
-  background: linear-gradient(90deg, #1c1c1c, #2a2a2a); 
+  background-color: #000; /* jet black */
   color: #ffd700;                
   font-weight: bold;
   padding: 30px 40px;            
@@ -29,17 +29,33 @@
   justify-content: space-between;
   align-items: center;
   border-radius: 0;              
-  box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4); /* subtle golden shadow */
+  box-shadow: 0 3px 15px #ffd700; /* strong professional shadow */
   position: relative;            
-  overflow: hidden;
-  animation: backgroundPulse 4s ease-in-out infinite alternate;
 }
 
-/* ---------- Background Pulse Animation ---------- */
-@keyframes backgroundPulse {
-  0% { background-color: #1b1b1b; }
-  50% { background-color: #222222; }
-  100% { background-color: #1b1b1b; }
+/* ---------- Sehri & Iftar Boxes in Today ---------- */
+.today-row .sehri-box,
+.today-row .iftar-box {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  padding: 5px 10px;  
+}
+
+.today-row .sehri-box { text-align: left; }
+.today-row .iftar-box { text-align: right; }
+
+.today-row .center-info {
+  width: 50%;
+  text-align: center;
+  padding: 5px 0;  
+}
+
+/* ---------- Today Labels & Time ---------- */
+.today-row .label,
+.today-row .time,
+.today-row .day {
+  color: #ffd700; /* gold accent */
 }
 
 /* ---------- All Other Rows ---------- */
@@ -50,20 +66,16 @@
   width: 100%;
   padding: 20px 35px;             
   box-sizing: border-box;
-  transition: background 0.2s ease, padding 0.2s ease;
+  background-color: #1e1e1e; /* normal dark row */
 }
 
 /* ---------- Alternate Row Colors ---------- */
 .timetable-table .timetable-row:nth-child(even) {
-  background-color: #1e1e1e;
-}
-
-.timetable-table .timetable-row:nth-child(odd) {
   background-color: #2a2a2a;
 }
 
-.timetable-row:hover {
-  background-color: #2a2a2a; /* no hover highlight */
+.timetable-table .timetable-row:nth-child(odd) {
+  background-color: #1e1e1e;
 }
 
 /* ---------- Box Styles ---------- */
@@ -87,7 +99,7 @@
 .label {
   font-size: 0.8em;    
   font-weight: 600;
-  color: #ffd700;
+  color: #cccccc;
   margin-bottom: 5px;            
 }
 
@@ -101,18 +113,11 @@
 .center-info .day {
   font-size: 1.2em;
   font-weight: 600;
-  color: #ffd700;
+  color: #ffffff;
   margin-bottom: 5px;
 }
 
 .center-info .date {
   font-size: 1em;
   color: #cccccc;
-}
-
-/* ---------- Today Row Overrides ---------- */
-.today-row .label,
-.today-row .time,
-.today-row .day {
-  color: #ffd700;
 }
