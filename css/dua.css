@@ -1,0 +1,82 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #1E1E1E; /* Solid dark background */
+  color: #FFFFFF;
+}
+
+.dua-header {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #FFD700; /* Gold accent for header */
+  margin: 2.5rem 0 2rem 0;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.dua-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 0 2rem 3rem 2rem;
+}
+
+.dua-card {
+  background-color: #2A2A2A; /* Card background */
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.7);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.dua-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.9);
+}
+
+.dua-title {
+  color: #FFD700;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  border-bottom: 1px solid #444;
+  padding-bottom: 0.5rem;
+}
+
+.dua-arabic {
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-align: right;
+  direction: rtl;
+  margin: 0.6rem 0 0.4rem 0;
+  color: #FFFFFF;
+}
+
+.dua-transliteration {
+  font-style: italic;
+  color: #CCCCCC;
+  margin-bottom: 0.4rem;
+}
+
+.dua-translation {
+  color: #AAAAAA;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+  .dua-cards {
+    padding: 0 1rem 2rem 1rem;
+    gap: 1.5rem;
+  }
+  .dua-card {
+    padding: 1.5rem;
+  }
+  .dua-header {
+    font-size: 2rem;
+  }
+  .dua-title {
+    font-size: 1.25rem;
+  }
+}

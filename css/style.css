@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} 
+::scroll-marker {
+  display: none;
+}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding-bottom: 70px;
+}

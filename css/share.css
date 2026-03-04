@@ -1,0 +1,96 @@
+/* Dark theme wrapper */
+.share-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  padding: 30px 20px;
+  background-color: #1a1a1a; /* dark background */
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  max-width: 450px;
+  margin: 50px auto;
+  font-family: 'Roboto', sans-serif;
+  color: #f0f0f0;
+}
+
+/* Title */
+.share-wrapper h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #facc15; /* accent color */
+  text-align: center;
+}
+
+/* Input field */
+.share-wrapper input {
+  padding: 14px 18px;
+  font-size: 16px;
+  width: 100%;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background-color: #2a2a2a;
+  color: #f0f0f0;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.share-wrapper input::placeholder {
+  color: #aaa;
+}
+
+.share-wrapper input:focus {
+  border-color: #facc15;
+  box-shadow: 0 0 8px rgba(250, 204, 21, 0.5);
+}
+
+/* Share button */
+.share-wrapper button {
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background-color: #facc15;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 20px;
+}
+
+.share-wrapper button:hover {
+  background-color: #eab308;
+  transform: translateY(-2px);
+}
+
+/* Live preview box */
+.share-preview {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  border: 1px solid #333;
+  color: #facc15;
+  font-size: 18px;
+  text-align: center;
+  min-height: 40px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+  .share-wrapper {
+    padding: 25px 15px;
+    max-width: 90%;
+  }
+
+  .share-wrapper h2 {
+    font-size: 22px;
+  }
+
+  .share-wrapper button {
+    width: 100%;
+  }
+}
