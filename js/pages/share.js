@@ -5,17 +5,17 @@ export default function Share(container) {
   wrapper.className = "share-wrapper";
 
   const title = document.createElement("h2");
-  title.textContent = "Share Your Eid Greeting";
+  title.textContent = "Apna naam daal kar Eid Mubarak share karein";
   wrapper.appendChild(title);
 
   const input = document.createElement("input");
   input.type = "text";
-  input.placeholder = "Enter your name...";
+  input.placeholder = "Apna naam likhein...";
   input.id = "share-name";
   wrapper.appendChild(input);
 
   const button = document.createElement("button");
-  button.textContent = "Share";
+  button.textContent = "WhatsApp par share karein";
   wrapper.appendChild(button);
 
   const preview = document.createElement("div");
@@ -25,33 +25,38 @@ export default function Share(container) {
 
   container.appendChild(wrapper);
 
-  // Update live preview
+  // Live preview
   input.addEventListener("input", () => {
     const name = input.value.trim();
-    preview.textContent = name ? `Eid Mubarak, ${name}!` : "";
+    preview.textContent = name ? `${name} ne aapke liye Eid Mubarak message bheja hai` : "";
   });
 
-  // Share button click event
+  // Share button
   button.addEventListener("click", () => {
     const name = input.value.trim();
+
     if (!name) {
-      alert("Please enter a name!");
+      alert("Please apna naam likhein!");
       return;
     }
 
-    const shareText = `Eid Mubarak, ${name}! Check this greeting:`;
     const shareLink = `https://eid-mtpv.onrender.com/#/${encodeURIComponent(name)}`;
 
-    // Use Web Share API if available
+    const shareText =
+`🌙 ${name} ne aapke liye Eid Mubarak message bheja hai
+
+👇 Dekhne ke liye neeche blue link par click karein
+${shareLink}`;
+
+    // Web Share API
     if (navigator.share) {
       navigator.share({
-        title: "Eid Mubarak!",
-        text: shareText,
-        url: shareLink
-      }).catch(err => console.log("Share failed:", err));
-    } else {
-      // Open WhatsApp Web link
-      const whatsappURL = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + " " + shareLink)}`;
+        title: "Eid Mubarak",
+        text: shareText
+      }).catch(err => console.log(err));
+    } 
+    else {
+      const whatsappURL = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
       window.open(whatsappURL, "_blank");
     }
   });
